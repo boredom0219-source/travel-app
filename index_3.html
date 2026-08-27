@@ -1,0 +1,1481 @@
+<title>南島跨年自駕之旅</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --bg: #EEEDE1;
+    --surface: #FBFAF2;
+    --surface-2: #E3E1D2;
+    --ink: #1B2A2E;
+    --ink-soft: #52625F;
+    --ink-faint: #7C8B87;
+    --line: rgba(27,42,46,0.14);
+    --line-soft: rgba(27,42,46,0.08);
+
+    --accent: #1C7C74;
+    --accent-strong: #0F5C57;
+    --accent-tint: rgba(28,124,116,0.12);
+
+    --gold: #B87A28;
+    --plum: #5B4285;
+    --terracotta: #AD5636;
+    --sage: #63805A;
+    --slate: #6A7B81;
+
+    --paid-bg: rgba(99,128,90,0.15);
+    --paid-ink: #3F5C36;
+    --pending-bg: rgba(184,122,40,0.15);
+    --pending-ink: #8A5A17;
+
+    --shadow: 0 1px 2px rgba(27,42,46,0.06), 0 8px 24px -12px rgba(27,42,46,0.18);
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #101A1B;
+      --surface: #172325;
+      --surface-2: #1E2C2E;
+      --ink: #ECEFE9;
+      --ink-soft: #B7C4C0;
+      --ink-faint: #85978F;
+      --line: rgba(236,239,233,0.14);
+      --line-soft: rgba(236,239,233,0.08);
+
+      --accent: #54D2C2;
+      --accent-strong: #8DE6D8;
+      --accent-tint: rgba(84,210,194,0.14);
+
+      --gold: #E3A94D;
+      --plum: #B79BE8;
+      --terracotta: #E2916C;
+      --sage: #9BC08A;
+      --slate: #9FB3B8;
+
+      --paid-bg: rgba(155,192,138,0.16);
+      --paid-ink: #B9DDA9;
+      --pending-bg: rgba(227,169,77,0.16);
+      --pending-ink: #F0C583;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #101A1B;
+    --surface: #172325;
+    --surface-2: #1E2C2E;
+    --ink: #ECEFE9;
+    --ink-soft: #B7C4C0;
+    --ink-faint: #85978F;
+    --line: rgba(236,239,233,0.14);
+    --line-soft: rgba(236,239,233,0.08);
+
+    --accent: #54D2C2;
+    --accent-strong: #8DE6D8;
+    --accent-tint: rgba(84,210,194,0.14);
+
+    --gold: #E3A94D;
+    --plum: #B79BE8;
+    --terracotta: #E2916C;
+    --sage: #9BC08A;
+    --slate: #9FB3B8;
+
+    --paid-bg: rgba(155,192,138,0.16);
+    --paid-ink: #B9DDA9;
+    --pending-bg: rgba(227,169,77,0.16);
+    --pending-ink: #F0C583;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 28px -14px rgba(0,0,0,0.55);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ color-scheme: light dark; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  h1,h2,h3,h4{
+    font-family: "Fraunces", "Noto Serif TC", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--ink);
+  }
+  .mono{ font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  a{ color: var(--accent-strong); }
+  ::selection{ background: var(--accent-tint); }
+
+  .wrap{ max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 420px at 15% -10%, var(--accent-tint), transparent 60%),
+      var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-inner{ max-width: 980px; margin: 0 auto; padding: 48px 20px 28px; }
+  .eyebrow{
+    font-family:"JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-strong); font-weight: 600; margin-bottom: 10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--accent); }
+  .hero h1{ font-size: clamp(32px, 5vw, 46px); line-height:1.1; letter-spacing:-0.01em; }
+  .hero .sub{ color: var(--ink-soft); font-size: 17px; margin-top: 10px; max-width: 58ch; }
+  .hero .dates{ font-style: italic; font-family:"Fraunces", serif; color: var(--ink); }
+
+  .stat-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:1px;
+    background: var(--line); border:1px solid var(--line); border-radius: var(--radius);
+    overflow:hidden; margin-top: 28px;
+  }
+  .stat{ background: var(--surface); padding: 16px 18px; }
+  .stat .num{ font-family:"JetBrains Mono",monospace; font-size: 22px; font-weight:600; }
+  .stat .label{ font-size: 12.5px; color: var(--ink-faint); margin-top:2px; }
+
+  /* ---------- Tabs ---------- */
+  .tabbar{
+    position: sticky; top:0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px) saturate(1.1);
+    border-bottom: 1px solid var(--line);
+  }
+  .tabbar-inner{
+    max-width: 980px; margin:0 auto; padding: 0 20px;
+    display:flex; gap: 4px; overflow-x:auto; scrollbar-width:none;
+  }
+  .tabbar-inner::-webkit-scrollbar{ display:none; }
+  .tab{
+    appearance:none; border:none; background:none; cursor:pointer;
+    font-family:"Public Sans"; font-size: 14.5px; font-weight:600; color: var(--ink-faint);
+    padding: 16px 14px 13px; white-space:nowrap; border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .tab:hover{ color: var(--ink); }
+  .tab.active{ color: var(--accent-strong); border-color: var(--accent); }
+  .tab:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; border-radius:4px; }
+
+  .panel{ display:none; padding-top: 32px; animation: fade .25s ease; }
+  .panel.active{ display:block; }
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes fade{ from{ opacity:0; transform: translateY(4px);} to{opacity:1; transform:none;} }
+  }
+
+  section + section{ margin-top: 44px; }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 16px; flex-wrap:wrap;}
+  .section-head h2{ font-size: 22px; }
+  .section-head .note{ font-size: 13px; color: var(--ink-faint); }
+
+  /* ---------- Cards ---------- */
+  .card{
+    background: var(--surface); border:1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .card-pad{ padding: 20px 22px; }
+
+  /* ---------- Overview: route ---------- */
+  .route{ display:flex; flex-direction:column; }
+  .route-item{
+    display:grid; grid-template-columns: 22px 1fr; gap: 14px; position:relative;
+  }
+  .route-item .rail{ display:flex; flex-direction:column; align-items:center; }
+  .route-item .node{ width:10px; height:10px; border-radius:50%; background: var(--accent); margin-top: 6px; flex-shrink:0; }
+  .route-item .line{ width:1.5px; flex:1; background: var(--line); margin-top: 4px; }
+  .route-item:last-child .line{ display:none; }
+  .route-item .body{ padding-bottom: 22px; }
+  .route-item h3{ font-size: 16.5px; }
+  .route-item p{ margin: 4px 0 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  .story-toggle{
+    width:100%; text-align:left; background: var(--surface); border:1px solid var(--line);
+    border-radius: var(--radius); padding: 16px 20px; cursor:pointer; font-family:"Public Sans";
+    font-size: 15px; font-weight:600; color: var(--ink); display:flex; justify-content:space-between; align-items:center;
+    box-shadow: var(--shadow);
+  }
+  .story-toggle .chev{ transition: transform .2s ease; color: var(--ink-faint); }
+  .story-toggle[aria-expanded="true"] .chev{ transform: rotate(180deg); }
+  .story-body{ display:none; padding: 22px 4px 4px; }
+  .story-body.open{ display:block; }
+  .story-day{ padding: 16px 0; border-top: 1px solid var(--line-soft); }
+  .story-day:first-child{ border-top:none; padding-top: 4px; }
+  .story-day h4{ font-size: 15px; color: var(--accent-strong); margin-bottom:6px; }
+  .story-day p{ margin: 3px 0; color: var(--ink-soft); font-size: 14.5px; }
+  .story-day p b{ color: var(--ink); font-weight:600; }
+
+  .link-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap:10px; }
+  .link-card{
+    display:block; padding: 13px 15px; border:1px solid var(--line); border-radius: var(--radius);
+    background: var(--surface); font-size: 13.5px; color: var(--ink); text-decoration:none;
+  }
+  .link-card:hover{ border-color: var(--accent); }
+  .link-card .k{ font-weight:600; display:block; margin-bottom:2px; }
+  .link-card .u{ color: var(--ink-faint); font-size:12px; word-break: break-all; }
+
+  /* ---------- Scene icons / hero illustration ---------- */
+  .hero-scene{ margin-top: 30px; border-radius: var(--radius); overflow:hidden; border:1px solid var(--line); }
+  .hero-scene svg{ display:block; width:100%; height:auto; }
+  .scene-icon{ flex-shrink:0; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+  .route-item .scene-icon{ width:34px; height:34px; }
+  .route-item .rail{ align-items:flex-start; }
+  .day-chip .scene-icon{ width:22px; height:22px; margin-bottom:4px; }
+  .day-card .head .scene-icon{ width:44px; height:44px; }
+  .day-card .head .titles{ display:flex; gap:14px; align-items:center; }
+
+  /* ---------- Tips ---------- */
+  .tip-grid{ display:flex; flex-direction:column; gap:12px; }
+  .tip-card{ padding: 16px 20px; display:grid; grid-template-columns: auto 1fr; gap:14px; align-items:flex-start; }
+  .tip-card .num{ font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:700; color: var(--accent-strong); background: var(--accent-tint); width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .tip-card h3{ font-size: 15.5px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .tip-card p{ margin: 6px 0 0; font-size: 13.8px; color: var(--ink-soft); }
+  .tip-tag{ font-size:10.5px; font-weight:700; letter-spacing:.03em; padding:3px 8px; border-radius:999px; text-transform:uppercase; }
+  .tip-tag.urgent{ background: var(--pending-bg); color: var(--pending-ink); }
+  .tip-tag.idea{ background: var(--accent-tint); color: var(--accent-strong); }
+
+  /* ---------- Settlement ---------- */
+  .settle-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 14px; margin-bottom:16px; }
+  .settle-box{ background: var(--surface-2); border-radius: var(--radius); padding: 14px 16px; }
+  .settle-box .who{ font-size:12.5px; color: var(--ink-faint); font-weight:600; }
+  .settle-box .amt{ font-family:"JetBrains Mono",monospace; font-size:20px; font-weight:600; margin-top:4px; }
+  .settle-box .sub{ font-size:11.5px; color: var(--ink-faint); margin-top:2px; }
+  .settle-result{ display:flex; align-items:center; gap:14px; background: var(--accent-tint); border-radius: var(--radius); padding: 16px 18px; flex-wrap:wrap; }
+  .settle-result .arrow-icon{ font-size:20px; color: var(--accent-strong); }
+  .settle-result .text{ font-size: 14.5px; }
+  .settle-result .text b{ font-family:"JetBrains Mono",monospace; font-size:16px; }
+
+  /* ---------- Prep checklist ---------- */
+  .date-list{ display:flex; flex-direction:column; }
+  .date-row{ display:grid; grid-template-columns: 92px 1fr auto; gap:14px; align-items:center; padding: 13px 4px; border-top:1px solid var(--line-soft); }
+  .date-row:first-child{ border-top:none; }
+  .date-row .dd{ font-family:"JetBrains Mono",monospace; font-size:13px; color: var(--ink-soft); }
+  .date-row .lbl{ font-size:14px; }
+  .date-row .lbl .sm{ display:block; font-size:12px; color: var(--ink-faint); margin-top:2px; }
+  .count-pill{ font-family:"JetBrains Mono",monospace; font-size:11.5px; font-weight:700; padding: 4px 10px; border-radius:999px; white-space:nowrap; background: var(--surface-2); color: var(--ink-soft); }
+  .count-pill.soon{ background: var(--pending-bg); color: var(--pending-ink); }
+
+  .prep-groups{ display:flex; flex-direction:column; gap:22px; }
+  .prep-group h3{ font-size:15.5px; margin-bottom:10px; display:flex; align-items:center; gap:9px; }
+  .prep-list{ display:flex; flex-direction:column; }
+  .prep-item{ display:flex; align-items:flex-start; gap:11px; padding: 9px 4px; border-top:1px solid var(--line-soft); cursor:pointer; }
+  .prep-item:first-child{ border-top:none; }
+  .prep-item input{ margin-top:3px; width:15px; height:15px; accent-color: var(--accent); flex-shrink:0; cursor:pointer; }
+  .prep-item span{ font-size:13.8px; color: var(--ink-soft); line-height:1.5; }
+  .prep-item.done span{ color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--ink-faint); }
+  .prep-progress{ font-size:12px; color: var(--ink-faint); }
+
+  /* ---------- Live Google My Maps embed ---------- */
+  .gmap-embed-wrap{
+    position:relative; width:100%; aspect-ratio: 4/3; border-radius: var(--radius);
+    overflow:hidden; border:1px solid var(--line); box-shadow: var(--shadow); background: var(--surface-2);
+  }
+  .gmap-embed-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+  /* ---------- Route map ---------- */
+  .map-wrap{
+    position:relative; width:100%; aspect-ratio: 4/3; border-radius: var(--radius);
+    overflow:hidden; border:1px solid var(--line); box-shadow: var(--shadow);
+    background:
+      radial-gradient(600px 420px at 50% 30%, color-mix(in srgb, #fff 8%, transparent), transparent 70%),
+      color-mix(in srgb, var(--accent) 24%, var(--surface));
+  }
+  .map-wrap svg.map-lines{ position:absolute; inset:0; width:100%; height:100%; }
+  .map-caption{ position:absolute; left:12px; bottom:10px; font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.04em; color: var(--ink-faint); text-transform:uppercase; pointer-events:none; }
+  .map-compass{ position:absolute; right:14px; top:12px; font-family:"JetBrains Mono",monospace; font-size:11px; color: var(--ink-faint); display:flex; flex-direction:column; align-items:center; gap:2px; pointer-events:none; }
+  .map-label{
+    position:absolute; transform:translate(-50%,-128%); background: var(--gold); color:#241a04;
+    font-family:"Public Sans"; font-weight:700; font-size:12px; padding:4px 10px; border-radius:7px;
+    white-space:nowrap; box-shadow:0 3px 8px rgba(0,0,0,0.28); pointer-events:none; z-index:3;
+    border:1px solid rgba(0,0,0,0.1);
+  }
+  .map-label::after{
+    content:""; position:absolute; left:50%; bottom:-5px; transform:translateX(-50%);
+    border-left:5px solid transparent; border-right:5px solid transparent; border-top:5px solid var(--gold);
+  }
+  .map-pin{
+    position:absolute; width:24px; height:24px; margin:-12px 0 0 -12px;
+    border-radius:50%; background: var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"JetBrains Mono",monospace; font-weight:700; font-size:11px;
+    border:2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    text-decoration:none; cursor:pointer; transition: transform .15s ease;
+  }
+  .map-pin:hover, .map-pin:focus-visible{ transform: scale(1.18); z-index:5; outline:none; }
+  .map-pin.start{ background: var(--gold); }
+  .map-pin.end{ background: var(--terracotta); }
+  .map-legend{ display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; font-size:12px; color: var(--ink-faint); }
+  .map-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .map-legend i{ width:10px; height:10px; border-radius:50%; display:inline-block; }
+
+  .stop-list{ display:flex; flex-direction:column; margin-top:18px; }
+  .stop-row{ display:grid; grid-template-columns: 30px 92px 1fr auto; gap:12px; align-items:center; padding: 11px 4px; border-top:1px solid var(--line-soft); }
+  .stop-row:first-child{ border-top:none; }
+  .stop-row .num{ width:24px; height:24px; border-radius:50%; background: var(--accent-tint); color: var(--accent-strong); font-family:"JetBrains Mono",monospace; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; }
+  .stop-row .when{ font-family:"JetBrains Mono",monospace; font-size:12px; color: var(--ink-faint); }
+  .stop-row .name{ font-size:14px; }
+  .stop-row a.gmap{ font-size:12.5px; font-weight:600; color: var(--accent-strong); text-decoration:none; white-space:nowrap; display:flex; align-items:center; gap:5px; }
+  .stop-row a.gmap:hover{ text-decoration:underline; }
+
+  /* ---------- Day picker ---------- */
+  .day-picker{ display:flex; gap:8px; overflow-x:auto; padding-bottom: 6px; margin-bottom: 22px; scrollbar-width: thin; }
+  .day-chip{
+    flex-shrink:0; cursor:pointer; border:1px solid var(--line); background: var(--surface);
+    border-radius: var(--radius); padding: 9px 14px; text-align:left; min-width: 84px;
+    font-family:"Public Sans";
+  }
+  .day-chip .d{ font-family:"JetBrains Mono",monospace; font-size:12px; color: var(--accent-strong); font-weight:600; }
+  .day-chip .date{ font-size: 13.5px; font-weight:600; margin-top:2px; }
+  .day-chip .city{ font-size: 11.5px; color: var(--ink-faint); margin-top:1px; }
+  .day-chip.active{ background: var(--accent); border-color: var(--accent); }
+  .day-chip.active .d, .day-chip.active .date, .day-chip.active .city, .day-chip.active .chip-icon{ color: #fff; }
+  :root[data-theme="dark"] .day-chip.active .d,
+  :root[data-theme="dark"] .day-chip.active .date,
+  :root[data-theme="dark"] .day-chip.active .city,
+  :root[data-theme="dark"] .day-chip.active .chip-icon{ color: #0A1414; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .day-chip.active .d,
+    :root:not([data-theme="light"]) .day-chip.active .date,
+    :root:not([data-theme="light"]) .day-chip.active .city,
+    :root:not([data-theme="light"]) .day-chip.active .chip-icon{ color:#0A1414; }
+  }
+  .day-chip:focus-visible{ outline: 2px solid var(--accent); outline-offset:2px; }
+
+  .day-card .head{ padding: 22px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap: 16px; flex-wrap:wrap; align-items:flex-start; }
+  .day-card .head .tag{ font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--accent-strong); font-weight:700; letter-spacing:.04em; }
+  .day-card .head h3{ font-size: 22px; margin-top:4px; }
+  .day-card .head .where{ color: var(--ink-soft); font-size: 14.5px; margin-top:2px; }
+  .day-card .head .badge{
+    font-family:"JetBrains Mono",monospace; font-size:11.5px; padding: 5px 10px; border-radius: 999px;
+    background: var(--accent-tint); color: var(--accent-strong); font-weight:600; white-space:nowrap;
+  }
+  .day-card .body{ padding: 20px 22px 24px; display:grid; gap:20px; }
+  .timeline{ display:flex; flex-direction:column; gap:2px; }
+  .tl-row{ display:grid; grid-template-columns: 68px 1fr; gap:12px; padding: 9px 0; border-top:1px solid var(--line-soft); }
+  .tl-row:first-child{ border-top:none; }
+  .tl-row .t{ font-family:"JetBrains Mono",monospace; font-size:12.5px; color: var(--ink-faint); padding-top:1px; }
+  .tl-row .x{ font-size: 14.5px; }
+  .tl-row .x .hl{ color: var(--accent-strong); font-weight:600; }
+
+  .meta-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 12px; }
+  .meta-box{ background: var(--surface-2); border-radius: var(--radius); padding: 13px 15px; }
+  .meta-box .k{ font-size: 11.5px; color: var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; font-weight:600; }
+  .meta-box .v{ font-size: 14.5px; margin-top: 4px; }
+  .meal-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .meal{ font-size: 13.5px; color: var(--ink-soft); }
+  .meal b{ color: var(--ink); font-weight:600; }
+
+  .note-box{ font-size: 13.5px; color: var(--ink-soft); background: var(--accent-tint); border-radius: var(--radius); padding: 12px 15px; border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent); }
+
+  /* ---------- Accommodation cards ---------- */
+  .stay-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 14px; }
+  .stay-card{ padding: 18px 20px; }
+  .stay-card .d{ font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--accent-strong); font-weight:700; }
+  .stay-card h3{ font-size: 17px; margin-top:6px; }
+  .stay-card .city{ color: var(--ink-faint); font-size: 13px; margin-top:2px;}
+  .stay-card .prices{ display:flex; gap:18px; margin-top:12px; }
+  .stay-card .prices div .n{ font-family:"JetBrains Mono",monospace; font-weight:600; font-size:15px; }
+  .stay-card .prices div .l{ font-size:11px; color:var(--ink-faint); }
+  .stay-card .inout{ margin-top: 12px; font-size: 12.5px; color: var(--ink-soft); display:flex; gap:14px; flex-wrap:wrap;}
+  .stay-card .foot{ margin-top:10px; font-size:12px; color: var(--ink-faint); }
+
+  /* ---------- Flights ---------- */
+  .flight-row{
+    display:grid; grid-template-columns: 96px 1fr auto; gap:16px; align-items:center;
+    padding: 16px 4px; border-top: 1px solid var(--line-soft);
+  }
+  .flight-row:first-child{ border-top:none; }
+  .flight-row .date{ font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--ink-faint); }
+  .flight-path{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .flight-path .place{ font-weight:600; font-size: 14.5px; }
+  .flight-path .time{ font-family:"JetBrains Mono",monospace; font-size:12.5px; color: var(--ink-soft); display:block; }
+  .flight-path .arrow{ color: var(--accent); }
+  .flight-meta{ text-align:right; font-size:12px; color: var(--ink-faint); white-space:nowrap; }
+  .flight-meta .airline{ color: var(--ink); font-weight:600; font-size:13px; }
+
+  /* ---------- Budget ---------- */
+  .kpi-row{ display:grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+  .kpi{ background:var(--surface); padding:16px 18px; }
+  .kpi .n{ font-family:"JetBrains Mono",monospace; font-size:21px; font-weight:600; }
+  .kpi .l{ font-size:12px; color:var(--ink-faint); margin-top:2px; }
+
+  .bars{ display:flex; flex-direction:column; gap:14px; }
+  .bar-row .top{ display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:5px; }
+  .bar-row .top .cat{ font-weight:600; display:flex; align-items:center; gap:7px; }
+  .bar-row .top .cat .sw{ width:9px; height:9px; border-radius:2px; }
+  .bar-row .top .amt{ font-family:"JetBrains Mono",monospace; color: var(--ink-soft); }
+  .bar-track{ height:9px; border-radius:5px; background: var(--surface-2); overflow:hidden; }
+  .bar-fill{ height:100%; border-radius:5px; }
+
+  table{ width:100%; border-collapse: collapse; font-size: 13.5px; }
+  .table-wrap{ overflow-x:auto; }
+  th{ text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint); font-weight:600; padding: 10px 12px; border-bottom: 1px solid var(--line); white-space:nowrap; }
+  td{ padding: 11px 12px; border-bottom: 1px solid var(--line-soft); vertical-align:top; }
+  tr:last-child td{ border-bottom:none; }
+  td.num, th.num{ text-align:right; font-family:"JetBrains Mono",monospace; font-variant-numeric: tabular-nums; }
+  .status-pill{ font-size:11px; padding:3px 9px; border-radius:999px; font-weight:600; white-space:nowrap; display:inline-block; }
+  .status-paid{ background: var(--paid-bg); color: var(--paid-ink); }
+  .status-pending{ background: var(--pending-bg); color: var(--pending-ink); }
+  .cat-pill{ font-size:11px; padding:3px 9px; border-radius:999px; font-weight:600; white-space:nowrap; display:inline-block; color:#fff; }
+
+  .ledger-toggle{
+    background:none; border:1px solid var(--line); border-radius: var(--radius); padding: 12px 16px;
+    cursor:pointer; font-family:"Public Sans"; font-weight:600; font-size:14px; color:var(--ink);
+    display:flex; align-items:center; justify-content:space-between; width:100%;
+  }
+  .ledger-body{ display:none; margin-top:14px; }
+  .ledger-body.open{ display:block; }
+
+  footer{ margin-top: 60px; padding-top: 22px; border-top:1px solid var(--line); color: var(--ink-faint); font-size: 12.5px; }
+
+  @media (max-width: 620px){
+    .stat-row{ grid-template-columns: repeat(2,1fr); }
+    .flight-row{ grid-template-columns: 1fr; }
+    .flight-meta{ text-align:left; }
+  }
+</style>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot"></span>NEW ZEALAND · SOUTH ISLAND</div>
+    <h1>南島跨年自駕之旅</h1>
+    <p class="sub">從基督城出發，沿著冰川藍湖、庫克山與瓦納卡一路開向皇后鎮，<span class="dates">12/24 &rarr; 1/2</span>，在湖畔迎接 2027 年。</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">9 天 8 夜</div><div class="label">基督城進出．自駕環線</div></div>
+      <div class="stat"><div class="num">2 人</div><div class="label">小菜 &amp; ㄚ芸</div></div>
+      <div class="stat"><div class="num mono">$306,790</div><div class="label">預估總花費（TWD）</div></div>
+      <div class="stat"><div class="num mono">$177,161</div><div class="label">目前實際已付款</div></div>
+    </div>
+    <div class="hero-scene" id="hero-scene"></div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <div class="tabbar-inner" id="tabbar">
+    <button class="tab active" data-tab="overview">總覽</button>
+    <button class="tab" data-tab="days">每日行程</button>
+    <button class="tab" data-tab="stay">住宿與交通</button>
+    <button class="tab" data-tab="budget">預算</button>
+    <button class="tab" data-tab="map">路線地圖</button>
+    <button class="tab" data-tab="prep">行前準備</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= OVERVIEW ================= -->
+  <div class="panel active" id="panel-overview">
+
+    <section>
+      <div class="section-head"><h2>路線亮點</h2><span class="note">基督城 → 特卡波湖 → 庫克山 → 瓦納卡 → 皇后鎮 → 基督城</span></div>
+      <div class="card card-pad">
+        <div class="route" id="route-list"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>行程故事</h2><span class="note">逐日敘事筆記</span></div>
+      <button class="story-toggle" id="story-toggle" aria-expanded="false">
+        <span>打開南島 9 天 8 夜的完整故事 →</span>
+        <span class="chev">⌄</span>
+      </button>
+      <div class="story-body" id="story-body"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>行程優化建議</h2><span class="note">比對行程表、費用表與航班後整理</span></div>
+      <div class="tip-grid" id="tip-grid"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>實用連結</h2></div>
+      <div class="link-grid" id="link-grid"></div>
+    </section>
+
+  </div>
+
+  <!-- ================= DAYS ================= -->
+  <div class="panel" id="panel-days">
+    <div class="day-picker" id="day-picker"></div>
+    <div class="card day-card" id="day-card"></div>
+  </div>
+
+  <!-- ================= STAY & TRANSPORT ================= -->
+  <div class="panel" id="panel-stay">
+
+    <section>
+      <div class="section-head"><h2>住宿</h2><span class="note">單人房價／雙人房價，皆為新台幣估算</span></div>
+      <div class="stay-grid" id="stay-grid"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>航班</h2><span class="note">台北 ⇄ 香港 ⇄ 紐西蘭</span></div>
+      <div class="card card-pad" id="flight-list"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>租車與油資</h2></div>
+      <div class="meta-grid" id="car-grid"></div>
+    </section>
+
+  </div>
+
+  <!-- ================= BUDGET ================= -->
+  <div class="panel" id="panel-budget">
+
+    <section>
+      <div class="kpi-row" id="budget-kpis"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>目前分帳</h2><span class="note">依單人預估 50/50 分攤計算，僅計入已刷卡付款的項目</span></div>
+      <div class="card card-pad" id="settle-card"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>分類預估（單人）</h2><span class="note">合計 $147,760／人</span></div>
+      <div class="card card-pad">
+        <div class="bars" id="budget-bars"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>費用明細</h2><span class="note">實際花費 0 表示尚未付款</span></div>
+      <div class="card">
+        <div class="table-wrap">
+          <table id="budget-table">
+            <thead><tr>
+              <th>項目</th><th>分類</th><th class="num">實際</th><th class="num">預估</th><th class="num">單人</th><th>付款人</th><th>狀態</th><th>備註</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <button class="ledger-toggle" id="ledger-toggle" aria-expanded="false">
+        <span>刷卡明細（含外幣匯率與回饋）</span><span class="chev">⌄</span>
+      </button>
+      <div class="ledger-body card" id="ledger-body">
+        <div class="table-wrap">
+          <table id="ledger-table">
+            <thead><tr>
+              <th>付款人</th><th>消費日</th><th>項目</th><th>分類</th><th class="num">金額</th><th class="num">手續費</th><th class="num">回饋</th><th>幣別</th><th class="num">外幣</th><th class="num">匯率</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= MAP ================= -->
+  <div class="panel" id="panel-map">
+    <section>
+      <div class="section-head"><h2>互動地圖</h2><span class="note">Google My Maps，可縮放拖曳、切換衛星檢視</span></div>
+      <div class="gmap-embed-wrap">
+        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=19nvrlDXPW2dl3OIU3crV0IRSB8hMoWw&amp;ehbc=2E312F" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="note-box" style="margin-top:12px">這個地圖是從你的 Google My Maps 直接嵌入的即時版本，開啟後可以縮放、拖曳、切換衛星圖。</div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>路線示意圖</h2><span class="note">依行程順序連線，點地標或下方清單開啟 Google 地圖</span></div>
+      <div class="map-wrap">
+        <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 Z" fill="var(--accent-strong)"></path>
+            </marker>
+          </defs>
+          <polygon id="island-shape" fill="color-mix(in srgb, var(--sage) 55%, var(--surface))" stroke="color-mix(in srgb, var(--sage) 80%, var(--ink))" stroke-width="0.4" vector-effect="non-scaling-stroke"></polygon>
+          <g id="map-segments"></g>
+        </svg>
+        <div class="map-compass">N<span style="font-size:13px;line-height:1">&#8593;</span></div>
+        <div class="map-caption">South Island, New Zealand</div>
+        <div id="map-pins"></div>
+      </div>
+      <div class="map-legend">
+        <span><i style="background:var(--gold)"></i>出發：基督城</span>
+        <span><i style="background:var(--accent)"></i>沿途地標</span>
+        <span><i style="background:var(--terracotta)"></i>結束：皇后鎮機場</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>皇后鎮周邊放大</h2><span class="note">8–13 號地標距離近，放大方便點選</span></div>
+      <div class="map-wrap" style="aspect-ratio:16/9">
+        <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <g id="map-segments-2"></g>
+        </svg>
+        <div id="map-pins-2"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="stop-list" id="stop-list"></div>
+    </section>
+  </div>
+
+  <!-- ================= PREP ================= -->
+  <div class="panel" id="panel-prep">
+
+    <section>
+      <div class="section-head"><h2>重要日期</h2><span class="note">目前刷卡與取消期限，依訂房備註整理</span></div>
+      <div class="card card-pad"><div class="date-list" id="date-list"></div></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>行前準備清單</h2><span class="note" id="prep-progress-note"></span></div>
+      <div class="prep-groups" id="prep-groups"></div>
+    </section>
+
+  </div>
+
+  <footer>整理自你的 Google Sheet 行程與記帳表。部分住宿/租車日期在原始表格中有出入之處，已依付款明細與航班資訊校對呈現。</footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------------- Data ----------------
+
+  var route = [
+    ["基督城國際機場","旅程的起點與終點，也是租車、還車的地方。","plane"],
+    ["特卡波湖 Lake Tekapo","冰川藍湖水與夜間觀星的絕佳地點，善良牧羊人教堂就在湖畔。","church"],
+    ["奧拉基／庫克山國家公園","走進 Hooker Valley Track，近距離感受紐西蘭最高峰。","mountain"],
+    ["Skydive Wanaka","這趟旅程的重頭戲：15,000 英呎高空跳傘。","parachute"],
+    ["皇后鎮 Queenstown","極限之都，也是迎接 2027 年跨年煙火的地方。","gondola"],
+    ["奧瑪魯藍企鵝保育中心","回程東海岸亮點，觀看世界最小藍企鵝歸巢。","penguin"]
+  ];
+
+  var story = [
+    ["Day 1 · 12/25 (五) — 啟程出發","下午 15:30 從台北 (TPE) 起飛，準備迎接南半球的夏日。","住宿：機上。"],
+    ["Day 2 · 12/26 (六) — 抵達南島，準備上路","下午 17:20 抵達基督城 (CHC)，出關領行李約 18:30。搭計程車到基督城，晚上到 PAK'nSAVE 或 Countdown 採買未來幾天車上需要的零食、水和水果。","住宿：基督城 (Christchurch)。"],
+    ["Day 3 · 12/27 (日) — 夢幻土耳其藍與星空","早上 9:00 在機場租車。車程約 3 小時抵達特卡波湖，欣賞「善良牧羊人教堂」，開車上「約翰山天文台」喝咖啡俯瞰冰川藍湖水。晚上湖畔無光害處抬頭欣賞南半球星空。","住宿：特卡波湖周邊。"],
+    ["Day 4 · 12/28 (一) — 走入冰河與最高峰","特卡波湖 → 庫克山 → 瓦納卡，總車程約 3.5 小時。前往普卡基湖買盒高山鮭魚生魚片野餐，走一趟「Hooker Valley Track」冰河步道（來回約 3 小時）。下午穿過林迪斯隘口，傍晚抵達跳傘大本營瓦納卡。","住宿：瓦納卡 (Wanaka)。"],
+    ["Day 5 · 12/29 (二) — 解鎖 15,000 英呎高空跳傘！","早上前往 Skydive Wanaka 報到，把跳傘排在上午，天氣與能見度通常最佳，俯瞰南阿爾卑斯山與雙湖美景。下午湖畔散步，找「孤獨樹」拍照平復心情。","住宿：瓦納卡 (Wanaka)。"],
+    ["Day 6 · 12/30 (三) — 淘金小鎮與極限之都","瓦納卡 → 箭鎮 → 皇后鎮，約 1.5 小時。中途停靠淘金小鎮「箭鎮」吃知名肉派，中午抵達皇后鎮。下午搭 Skyline 纜車俯瞰瓦卡蒂普湖絕景，體驗 Luge 溜溜車。","住宿：皇后鎮（跨年住宿極搶手，務必盡速預訂）。"],
+    ["Day 7 · 12/31 (四) — 迎向 2027！皇后鎮跨年夜","可參加「米佛峽灣」觀光巴士一日遊，或搭 TSS 恩斯羅號蒸汽船前往高地牧場 BBQ。晚上回到市中心，在湖畔與各地旅人一起看煙火、倒數迎接 2027 年！","住宿：皇后鎮 (Queenstown)。"],
+    ["Day 8 · 1/1 (五) — 新年第一天，東海岸企鵝鎮","皇后鎮 → 克倫威爾 → 基督城，總時數約七小時。途中經過水果鎮克倫威爾，買些新鮮櫻桃。傍晚抵達白石小鎮「奧瑪魯」，日落後到保育中心看藍企鵝歸巢。","住宿：機場周邊。"],
+    ["Day 9 · 1/2 (六) — 基督城悠閒收尾，準備登機","16:00 還車。開車到基督城玩、買伴手禮，吃個飯、拿行李，輕鬆辦理登機手續。","傍晚返程班機出發。"],
+    ["Day 10 · 1/2 (六，跨時區抵台) — 滿載回憶抵達台灣","班機於當日 19:20 抵達台北，結束完美的跨年之旅！",""]
+  ];
+
+  var links = [
+    ["南極中心門票","tw.trip.com — International Antarctic Centre"],
+    ["Skydive Wanaka","reesetravel.com — 跳傘方案與拍照加價說明"],
+    ["Skydive Wanaka（訂購）","klook.com — Skydive Wanaka / Queenstown"],
+    ["行程路線地圖","Google My Maps — 南島自駕路線"],
+    ["Jo's Place（特卡波湖，備選）","booking.com — Jo's Place Lake Tekapo"],
+    ["紐西蘭 eSIM","ok-sim.com — New Zealand eSIM"],
+    ["紐西蘭 eSIM（備選）","simax-esim.com — New Zealand eSIM"],
+    ["超市採買地標","Google Maps — PAK'nSAVE / Countdown"]
+  ];
+  var linkUrls = [
+    "https://tw.trip.com/travel-guide/attraction/christchurch/international-antarctic-centre-80893/",
+    "https://reesetravel.com/nz-skydive/",
+    "https://www.klook.com/zh-TW/activity/7380-skydive-wanaka-queenstown/",
+    "https://www.google.com/maps/d/u/0/edit?hl=zh-TW&mid=1rKk3W6rdn2I_juT3fwt68H4KFNZMIzo",
+    "https://www.booking.com/hotel/nz/jo-39-s-place.zh-tw.html",
+    "https://ok-sim.com/NEW_ZEALAND_eSIM_NON-STOP",
+    "https://simax-esim.com/product/new-zealand-esim/",
+    "https://maps.app.goo.gl/B9FKYcijFyWHRqFn6"
+  ];
+
+  // days: id, date, weekday, city, timeline[[time,text,hl?]], meals{b,l,d}, stay, note
+  var days = [
+    {
+      d:"D0", date:"12/24 (四)", city:"台北 → 香港",
+      timeline:[
+        ["10:45","桃園機場 T1 起飛，國泰航空 CX489"],
+        ["13:00","抵達香港機場 T1，轉機等待"],
+        ["20:40","香港機場 T1 起飛，國泰航空 CX119，直飛克賴斯特徹奇"]
+      ],
+      meals:{b:"—", l:"機場", d:"飛機餐"},
+      stay:"機上過夜", note:"隔日 12:50 抵達克賴斯特徹奇（+1 天）。"
+    },
+    {
+      d:"D1", date:"12/25 (五)", city:"基督城 Christchurch",
+      timeline:[
+        ["12:50","CHC 克賴斯特徹奇國際機場降落"],
+        ["13:50–14:50","完成入境、領行李、海關"],
+        ["14:10–15:00","抵達景點（視人潮）"],
+        ["15:00","開始參觀 International Antarctic Centre"]
+      ],
+      meals:{b:"飛機餐", l:"？", d:"—"},
+      stay:"Novotel Christchurch Airport · 入住 14:00", note:"抵達第一天，先熟悉基督城，晚上補給採買。"
+    },
+    {
+      d:"D2", date:"12/26 (六)", city:"特卡波湖 Lake Tekapo",
+      timeline:[
+        ["09:00","於機場取車，開始自駕行程"],
+        ["途中","推薦停靠 Fairlie Bakehouse（人氣派店）"],
+        ["抵達後","善良牧羊人教堂、星空觀測、溫泉"]
+      ],
+      meals:{b:"—", l:"Fairlie Bakehouse", d:"—"},
+      stay:"Peppers Bluewater Resort · 入住 15:00", note:"原規劃住宿為 Jo's Place，實際刷卡入住為 Peppers Bluewater Resort。"
+    },
+    {
+      d:"D3", date:"12/27 (日)", city:"特威澤爾 Twizel",
+      timeline:[
+        ["強烈推薦","Aoraki / Mount Cook National Park"],
+        ["路線","Tekapo ↔ Mt Cook 來回可行"],
+        ["推薦步道","Hooker Valley Track（神級景色）"]
+      ],
+      meals:{b:"—", l:"—", d:"—"},
+      stay:"The Lakes Motel · 14:00–19:00 入住", note:"這天不要只待特卡波湖，會太可惜。可補助 $119.92。"
+    },
+    {
+      d:"D4", date:"12/28 (一)", city:"特威澤爾 Twizel",
+      timeline:[
+        ["沿路推薦停靠","Lindis Pass、Lake Pukaki"],
+        ["晚上","前往 Wanaka Tree（孤獨樹）"]
+      ],
+      meals:{b:"—", l:"—", d:"—"},
+      stay:"Guesthouse B · 退房 08:00–10:00", note:""
+    },
+    {
+      d:"D5", date:"12/29 (二)", city:"瓦納卡 Wanaka",
+      timeline:[
+        ["體力派","Roys Peak Track"],
+        ["輕鬆派","Blue Pools、Lavender Farm、湖邊咖啡廳"],
+        ["重頭戲","Skydive Wanaka 15,000 英呎高空跳傘（建議排上午）"]
+      ],
+      meals:{b:"—", l:"—", d:"—"},
+      stay:"Lime Tree Lodge · 入住 15:00–18:00／退房 08:00–11:00",
+      note:"拍照加價方案：手腕相機 $209／第三人側拍 $319／混合方案 $379（NZD／人）。"
+    },
+    {
+      d:"D6", date:"12/30 (三)", city:"皇后鎮 Queenstown",
+      timeline:[
+        ["途中可走","Cardrona Hotel（很紅）、箭鎮 Arrowtown"],
+        ["晚上","Skyline Gondola 纜車，可加購 Luge 溜溜車"]
+      ],
+      meals:{b:"—", l:"箭鎮肉派", d:"—"},
+      stay:"LyLo Queenstown · 入住 15:00（跨年連住 2 晚）", note:"跨年住宿極搶手，務必盡速預訂。"
+    },
+    {
+      d:"D7", date:"12/31 (四)", city:"皇后鎮 Queenstown",
+      timeline:[
+        ["白天","米佛峽灣一日遊或 TSS 蒸汽船高地牧場 BBQ（可擇一）"],
+        ["晚上","湖邊跨年煙火、市區跨年活動"]
+      ],
+      meals:{b:"—", l:"—", d:"—"},
+      stay:"LyLo Queenstown（連住中）", note:"2026 → 2027 跨年夜。"
+    },
+    {
+      d:"D8", date:"1/1 (五)", city:"皇后鎮 Queenstown",
+      timeline:[
+        ["09:00–09:30","前往皇后鎮機場 (ZQN)，行李寄放 Zone C 儲物櫃"],
+        ["09:45–10:45","卡瓦勞大橋 Kawarau Bridge（1880 年歷史吊橋）"],
+        ["11:00–13:30","箭鎮深度遊：<span class='hl'>Chinese Settlement</span> 遺址，午餐"],
+        ["14:00–15:30","皇冠峰 Coronet Peak 攻頂，俯瞰 Wakatipu 盆地全景"],
+        ["15:45–16:30","Frankton 加油站加滿油，確認車內清空"],
+        ["17:00","機場還車"]
+      ],
+      meals:{b:"—", l:"箭鎮", d:"—"},
+      stay:"南方笑聲背包客旅館 · 入住 15:00–17:00／退房 07:30–10:00",
+      note:"備案：若延誤可加價 50 NZD 延長還車時間至當日 16:00 前往機場。"
+    },
+    {
+      d:"D9", date:"1/2 (六)", city:"皇后鎮 → 台北",
+      timeline:[
+        ["07:00","ZQN 皇后鎮機場起飛，紐航 NZ638"],
+        ["08:50","抵達奧克蘭 D 航廈"],
+        ["10:10","奧克蘭 I 航廈起飛，紐航 NZ081"],
+        ["16:20","抵達香港 T1"],
+        ["17:35","香港 T1 起飛，華航 CI916"],
+        ["19:20","抵達台北桃園機場 T1"]
+      ],
+      meals:{b:"—", l:"飛機餐", d:"飛機餐"},
+      stay:"抵達家！", note:"結束南島 9 天 8 夜自駕跨年之旅。"
+    }
+  ];
+
+  var stays = [
+    ["D1","12/25","基督城","Novotel Christchurch Airport",5892,2946,"入住 14:00","退房 11:00",""],
+    ["D2","12/26","特卡波湖","Peppers Bluewater Resort",8140,4070,"入住 15:00","","刷卡回饋 8%"],
+    ["D3","12/27","特威澤爾","The Lakes Motel",11426,5713,"14:00–19:00","","可補助 $119.92"],
+    ["D4","12/28","特威澤爾","Guesthouse B",8573,4287,"","退房 08:00–10:00",""],
+    ["D5","12/29","瓦納卡","Lime Tree Lodge",7746,3873,"15:00–18:00","08:00–11:00",""],
+    ["D6–D7","12/30–31","皇后鎮","LyLo Queenstown（2 晚）",18603,9302,"入住 15:00","",""],
+    ["D8","1/1","皇后鎮","南方笑聲背包客旅館",1549,775,"15:00–17:00","07:30–10:00",""]
+  ];
+
+  var flights = [
+    ["2026/12/24","臺灣桃園 T1","10:45","香港 T1","13:00","2 小時 15 分","國泰航空 CX489","DVEC4Q"],
+    ["2026/12/24","香港 T1","20:40","克賴斯特徹奇","12:50 (+1)","12 小時 10 分","國泰航空 CX119","DVEC4Q"],
+    ["2027/01/02","皇后鎮","07:00","奧克蘭 D","08:50","1 小時 50 分","紐西蘭航空 NZ638","FIDUDH / DVRXXT"],
+    ["2027/01/02","奧克蘭 I","10:10","香港 T1","16:20","11 小時 10 分","紐西蘭航空 NZ081","FIDUDH / DVRXXT"],
+    ["2027/01/02","香港 T1","17:35","臺灣桃園 T1","19:20","1 小時 45 分","中華航空 CI916","FIDUDH / DVRXXT"]
+  ];
+
+  var categories = [
+    ["交通",57616,"accent"],
+    ["住宿",30964,"plum"],
+    ["娛樂",36980,"gold"],
+    ["餐飲",10500,"terracotta"],
+    ["購物",5000,"sage"],
+    ["其他",6700,"slate"]
+  ];
+  var catColorVar = { "交通":"--accent","住宿":"--plum","娛樂":"--gold","餐飲":"--terracotta","購物":"--sage","其他":"--slate" };
+
+  // item, vendor, actual, est, perPerson, payer, note, category
+  var budgetItems = [
+    ["機票來回","","交通",96614,98088,48307,"小菜","3200 退票費用"],
+    ["D6–D7 住宿","LyLo Queenstown","住宿",18603,20000,9302,"小菜","12/27 刷卡，可取消"],
+    ["D1 住宿","Novotel Christchurch Airport","住宿",5892,7000,2946,"小菜","12/21 刷卡，可取消"],
+    ["D2 住宿","Peppers Bluewater Resort","住宿",8140,10000,4070,"小菜","12/26 刷卡，可取消"],
+    ["D5 住宿","Lime Tree Lodge","住宿",7746,10000,3873,"ㄚ芸","12/4 刷卡，可取消"],
+    ["租車 (12/27–1/2)","autoUnion Car Rental","交通",18618,18342,9309,"ㄚ芸","5/9 刷卡，12/25 前可免費取消"],
+    ["跳傘","Skydive Wanaka","娛樂",0,20000,10000,"—","7 月訂"],
+    ["跳傘拍照","","娛樂",0,15160,7580,"—","NZD 209〜379／人"],
+    ["國際南極中心","","娛樂",0,2800,1400,"—","7 月訂"],
+    ["油錢","","其他",0,8600,4300,"—",""],
+    ["伴手禮","","購物",0,10000,5000,"—",""],
+    ["旅平險","","其他",0,4000,2000,"—",""],
+    ["冰川健行＋直升機","","娛樂",0,36000,18000,"—",""],
+    ["吃飯","","餐飲",0,21000,10500,"—",""],
+    ["機場放行李","","其他",0,800,400,"—",""],
+    ["D4 住宿","Guesthouse B","住宿",8573,10000,4287,"ㄚ芸","12/4 刷卡，可取消"],
+    ["D8 住宿","南方笑聲背包客旅館","住宿",1549,5000,775,"ㄚ芸","12/27 刷卡，可取消"],
+    ["D3 住宿","The Lakes Motel","住宿",11426,10000,5713,"ㄚ芸","12/12 刷卡，可取消"]
+  ];
+
+  // payer, spendDate, item, category, amount, fee, cashback, currency, foreignAmt, rate
+  var ledger = [
+    ["小菜","2026/04/07","機票來回","交通",68640,1030,2059,"GBP","",""],
+    ["小菜","2026/04/15","機票來回","交通",-62242,-934,-1867,"GBP","",""],
+    ["小菜","2026/04/15","機票來回","交通",91688,1375,2751,"GBP","",""],
+    ["小菜","2026/04/07","D6–D7 住宿","住宿",8659,130,260,"NZD",471.83,18.35],
+    ["小菜","2026/04/16","D6–D7 住宿","住宿",-8748,-131,-262,"NZD",471.83,18.54],
+    ["小菜","2026/04/10","D6–D7 住宿","住宿",18691,"","","NZD",1008.90,18.53],
+    ["小菜","2026/04/22","D2 住宿","住宿",8140,"","","NZD",440.00,18.50],
+    ["ㄚ芸","2026/05/09","租車","交通",18342,276,"","USD",586.03,31.30],
+    ["ㄚ芸","2026/05/17","D4 住宿","住宿",8573,"","","NZD",465.00,18.44],
+    ["ㄚ芸","2026/05/17","D5 住宿","住宿",7746,"","","NZD",420.12,18.44],
+    ["ㄚ芸","2026/05/17","D8 住宿","住宿",1549,"","","NZD",84.00,18.44],
+    ["小菜","2026/05/19","D1 住宿","住宿",5892,"","","NZD",319.50,18.44],
+    ["ㄚ芸","2026/06/30","D3 住宿","住宿",11426,"","","NZD",634.00,18.02]
+  ];
+
+  var car = [
+    ["取車地點","264 Russley Road, Avonhead, Christchurch, New Zealand"],
+    ["聯絡電話","+64-9-6882299"],
+    ["租期","12/27 – 1/2（依租車費用登記；實際取車為 12/26 上午 9:00，還車 1/1 17:00）"],
+    ["租金","NT$18,618（估 18,342）／單人 NT$9,309"],
+    ["預估總油資","NZD 350–430（約 NT$7,000–8,600）"],
+    ["單人分攤油資","NZD 175–215（約 NT$3,500–4,300）"]
+  ];
+
+  // simplified South Island coastline, [lat, lng], clockwise from Farewell Spit
+  var islandOutline = [
+    [-40.50,172.68],[-40.47,172.30],[-40.62,172.10],[-40.85,172.15],[-41.00,172.45],
+    [-41.10,173.05],[-41.05,173.30],[-41.27,173.28],[-41.15,173.55],[-41.05,173.85],
+    [-41.10,174.10],[-41.35,174.05],[-41.75,174.00],[-42.10,173.85],[-42.42,173.68],
+    [-42.55,173.55],[-42.85,173.35],[-43.20,173.05],[-43.35,172.75],[-43.53,172.72],
+    [-43.60,172.85],[-43.75,173.15],[-43.85,172.95],[-43.80,172.60],[-43.95,172.30],
+    [-44.15,171.85],[-44.30,171.55],[-44.65,171.15],[-45.00,171.05],[-45.10,170.95],
+    [-45.35,170.85],[-45.55,170.90],[-45.78,170.75],[-45.90,170.55],[-45.95,170.30],
+    [-46.05,170.10],[-46.20,169.85],[-46.35,169.75],[-46.55,169.30],[-46.65,169.00],
+    [-46.66,168.55],[-46.60,168.30],[-46.45,168.05],[-46.15,167.65],[-45.95,167.30],
+    [-45.80,167.00],[-45.60,166.90],[-45.50,166.65],[-45.35,166.75],[-45.20,166.55],
+    [-45.00,166.90],[-44.85,167.10],[-44.70,167.55],[-44.50,167.85],[-44.35,168.05],
+    [-44.00,168.75],[-43.90,169.05],[-43.60,169.45],[-43.45,169.90],[-43.10,170.10],
+    [-42.95,170.25],[-42.65,170.85],[-42.45,171.20],[-42.10,171.35],[-41.75,171.55],
+    [-41.35,171.90],[-40.95,172.05],[-40.65,172.30]
+  ];
+
+  // indices into routeStops that get a named map label (avoid clutter — only the anchor towns)
+  var mapLabels = { 0:"基督城 Christchurch", 2:"蒂卡波湖 Tekapo", 5:"瓦納卡 Wanaka", 8:"皇后鎮 Queenstown" };
+
+  // day, date, name, lat, lng, google-maps search query
+  var routeStops = [
+    ["D1","12/25","基督城機場",-43.4894,172.5320,"Christchurch Airport New Zealand"],
+    ["D1","12/25","國際南極中心",-43.4869,172.5486,"International Antarctic Centre Christchurch"],
+    ["D2","12/26","善良牧羊人教堂・特卡波湖",-44.0075,170.4790,"Church of the Good Shepherd Lake Tekapo"],
+    ["D3","12/27","庫克山國家公園",-43.7357,170.0968,"Aoraki Mount Cook National Park"],
+    ["D3–D4","12/27–28","特威澤爾",-44.2600,170.0985,"Twizel New Zealand"],
+    ["D5","12/29","孤獨樹・瓦納卡",-44.6975,169.1345,"That Wanaka Tree"],
+    ["D5","12/29","Skydive Wanaka",-44.6763,169.2458,"Skydive Wanaka"],
+    ["D6","12/30","箭鎮",-44.9354,168.8330,"Arrowtown New Zealand"],
+    ["D6–D7","12/30–31","皇后鎮市中心・Skyline Gondola",-45.0312,168.6626,"Skyline Gondola Queenstown"],
+    ["D8","1/1","卡瓦勞大橋",-45.0500,168.7550,"Kawarau Bridge Bungy New Zealand"],
+    ["D8","1/1","皇冠峰",-44.9139,168.7378,"Coronet Peak New Zealand"],
+    ["D9","1/2","皇后鎮機場（搭機返台）",-45.0211,168.7392,"Queenstown Airport New Zealand"]
+  ];
+
+  var importantDates = [
+    ["2026-12-04","Lime Tree Lodge ／ Guesthouse B 刷卡日","瓦納卡、特威澤爾住宿，備註皆為可取消"],
+    ["2026-12-12","The Lakes Motel 刷卡日","特威澤爾住宿，可取消"],
+    ["2026-12-21","Novotel Christchurch Airport 刷卡日","基督城住宿，可取消"],
+    ["2026-12-25","租車免費取消期限","過此日期取消 autoUnion 租車恐開始收費，記得先確認要不要租"],
+    ["2026-12-26","Peppers Bluewater Resort 刷卡日","特卡波湖住宿，有 8% 刷卡回饋"],
+    ["2026-12-27","LyLo Queenstown ／ 南方笑聲背包客旅館 刷卡日","皇后鎮住宿，可取消"]
+  ];
+
+  var prepGroups = [
+    ["證件與保險", [
+      "護照效期距回程需有 6 個月以上，兩人都先檢查",
+      "確認是否需申請 NZeTA 電子旅行許可＋國際旅客保育及旅遊稅 (IVL)，出發前務必上紐西蘭移民局官網送出",
+      "旅平險：確認保額涵蓋跳傘、冰河健行等高風險活動（一般旅平險常有除外條款，需額外加保或選對保單）",
+      "租車用駕照：確認台灣駕照＋國際駕照 (IDP) 或英文公證翻譯本，NZ 租車現場會查驗",
+      "信用卡海外刷卡：出發前通知發卡銀行海外使用、確認額度足夠支付訂房尾款與油資"
+    ]],
+    ["行李與裝備", [
+      "洋蔥式穿法：南島夏季日夜溫差大，山區（庫克山、皇冠峰）即使白天也偏涼，準備保暖外套＋防風層",
+      "防曬乳（高係數）、太陽眼鏡、帽子：紐西蘭紫外線指數偏高，即使陰天也需要",
+      "健行鞋：Hooker Valley Track、Roys Peak 都是碎石與吊橋地形，一般運動鞋偏滑",
+      "跳傘當天穿貼身好活動的衣物與綁緊的鞋子，避免寬鬆衣物、耳環項鍊等配件",
+      "頭燈或手電筒：特卡波湖夜間觀星，山區步道也用得到",
+      "泳衣：特卡波湖溫泉、住宿若有泳池",
+      "轉接頭：紐西蘭插座與台灣不同（Type I，同澳洲），記得帶轉接頭與行動電源"
+    ]],
+    ["自駕注意事項", [
+      "紐西蘭靠左行駛，租車前先在空地熟悉方向燈／雨刷相反的手感",
+      "山區單線橋（One Lane Bridge）多，注意路權指示牌，讓對向優先或依標示通行",
+      "Lindis Pass、庫克山周邊山路彎多坡陡，山區天氣說變就變，留意路況與雲霧",
+      "確認租車保險的自負額 (excess)，需要的話可加保降低事故自付金額",
+      "鄉間加油站營業時間較短，油量剩一半以下建議就近加滿，避免夜間找不到營業站",
+      "跨年夜皇后鎮市區交通與停車會非常壅塞，建議提早把車停妥、用走的去湖邊"
+    ]],
+    ["邊境與生物安全", [
+      "入境申報表／NZTA App：健行鞋、登山杖、帳篷等戶外裝備若沾有泥土或種子需申報清潔，查驗嚴格且會罰款",
+      "不要攜帶新鮮水果、肉製品、蜂蜜等食品入境，落地後可在超市（PAK'nSAVE／Countdown）採買",
+      "跳傘、冰河健行等戶外活動的鞋子回國前也建議刷洗乾淨，方便入境申報"
+    ]],
+    ["行程專屬提醒", [
+      "Skydive Wanaka 出發前再次確認體重限制與天候候補政策，把 D6 早上排鬆一點以防延期",
+      "藍企鵝保育中心開放時間隨日落調整，出發前一週上官網查當週實際場次，現場禁止使用閃光燈",
+      "跨年夜（12/31）皇后鎮湖邊餐廳與活動需求量大，想吃跨年晚餐建議提前訂位",
+      "冰川健行＋直升機、南極中心等尚未付款的體驗類項目，記得依 7月 timeline 陸續完成付款與時段確認",
+      "D8 皇后鎮還車前記得先把行李從機場置物櫃取出，並確認油箱加滿、車內清空"
+    ]]
+  ];
+
+  var tips = [
+    ["urgent","還車地點可能吃到單程費","Christchurch 取車、目前行程卻是 D8 在皇后鎮機場還車 (17:00)。紐西蘭租車跨島還車常有一筆「單程費」，$18,618 的租金若還沒含這筆費用，實際租車成本會再往上跳，建議跟 autoUnion 確認清楚。"],
+    ["urgent","「行程故事」段落與實際機票對不上","總覽裡的敘事版本寫 1/2 從皇后鎮開回基督城、路上去奧瑪魯看藍企鵝、晚上在基督城還車；但實際訂的機票是 1/2 早上 07:00 直接從皇后鎮機場 (ZQN) 起飛。這代表回程開回基督城、奧瑪魯藍企鵝那段是舊版草稿，跟目前機票衝突，建議直接刪掉或明確標記為「未採用的備案」，免得兩人各記得不同版本。"],
+    ["urgent","租車起租日跟行程對不上","費用表把租車登記在「12/27–1/2」，但行程表寫的是 D2（12/26）早上 9:00 就要在機場取車去特卡波湖。如果租車真的是 12/27 才開始，12/26 那天會沒有車可用，務必跟租車公司對一次正確的取還車日期。"],
+    ["idea","特威澤爾兩晚可以只訂一間","D3、D4 都待在特威澤爾，卻分別訂了 The Lakes Motel 跟 Guesthouse B 兩間不同旅館。如果兩間都還能取消，換成同一間住兩晚，可以省下中間那次收拾行李、辦入住退房的時間，把庫克山那天玩得更從容。"],
+    ["idea","跳傘留一天彈性","南島天氣變化快，Skydive Wanaka 常因風速、能見度臨時延後。D5 排跳傘、D6 就要開車去皇后鎮，中間幾乎沒有緩衝。可以先跟業者確認改期規則，並把 D6 早上的行程排鬆一點，萬一跳傘延到隔天還撐得住。"],
+    ["idea","跨年夜的米佛峽灣一日團有點滿","D7 (12/31) 若安排全天的米佛峽灣或蒸汽船行程，來回車程加行程通常要 11–13 小時，回到皇后鎮可能已經傍晚，留給晚餐、休息、跨年煙火的時間會很緊繃。可以考慮把這類長天數行程挪到 D6，12/31 當天只留市區活動＋跨年倒數，玩起來會輕鬆很多。"],
+    ["idea","抵達第一天別排太滿","D1 從台北飛香港轉機到基督城，總飛行加轉機接近 20 小時，落地後馬上排南極中心參觀。建議把這段列為「有體力再去」的彈性行程，優先讓身體適應時差，晚一點採買、早點休息，隔天租車自駕才有精神。"]
+  ];
+
+  function icon(key, color){
+    color = color || "currentColor";
+    var s = "<svg viewBox='0 0 32 32' width='100%' height='100%' fill='none' stroke='"+color+"' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'>";
+    var body = {
+      plane: "<path d='M4 17 27 9 23 16 27 23 4 17Z'/><path d='M13 15 9 21 12 21 15 17'/>",
+      church: "<path d='M16 6 22 13H10Z'/><path d='M16 3v4'/><path d='M12 13v14h8V13'/><path d='M14 20h4v7h-4z'/>",
+      mountain: "<path d='M4 24 12 10l4 6 3-4 9 12Z'/><path d='M12 10l2.6 3.4M4 24h24'/>",
+      tree: "<path d='M16 6c-4 3-6 7-4 11-3 1-5 4-3 8h14c2-4 0-7-3-8 2-4 0-8-4-11Z'/><path d='M16 25v4'/>",
+      gondola: "<path d='M3 10h26'/><path d='M11 10v5h10v-5'/><path d='M12 15h8l2 9H10Z'/>",
+      fireworks: "<path d='M16 4v6M16 22v6M4 16h6M22 16h6M8 8l4 4M24 8l-4 4M8 24l4-4M24 24l-4-4'/><circle cx='16' cy='16' r='3'/>",
+      bridge: "<path d='M3 22c4-8 22-8 26 0'/><path d='M3 22h26'/><path d='M9 22v-5M16 22v-8M23 22v-5'/>",
+      snowflake: "<path d='M16 3v26M6 9l20 14M26 9 6 23'/>",
+      penguin: "<path d='M16 5c5 0 8 5 8 11 0 7-3 11-8 11s-8-4-8-11c0-6 3-11 8-11Z'/><path d='M16 12c2.5 0 4 3 4 8s-1.5 8-4 8-4-3-4-8 1.5-8 4-8Z'/><circle cx='13.5' cy='9' r='0.9' fill='"+color+"'/>",
+      parachute: "<path d='M4 14a12 12 0 0 1 24 0Z'/><path d='M6 14c2 2 4 2 6 0M14 14c2 2 4 2 6 0M22 14c2 2 4 2 6 0'/><path d='M8 14 15 26M24 14l-7 12'/><path d='M15 26h4'/>"
+    };
+    return s + (body[key] || body.mountain) + "</svg>";
+  }
+  function iconBox(key, colorVar){
+    return "<div class='scene-icon' style='background:var(--accent-tint);color:var("+colorVar+")'>"+icon(key,"currentColor")+"</div>";
+  }
+
+  var heroSceneSVG =
+    "<svg viewBox='0 0 960 260' preserveAspectRatio='xMidYMid slice' xmlns='http://www.w3.org/2000/svg'>"+
+      "<defs>"+
+        "<linearGradient id='sky' x1='0' y1='0' x2='0' y2='1'>"+
+          "<stop offset='0%' stop-color='var(--plum)' stop-opacity='0.35'/>"+
+          "<stop offset='60%' stop-color='var(--accent)' stop-opacity='0.18'/>"+
+          "<stop offset='100%' stop-color='var(--surface)'/>"+
+        "</linearGradient>"+
+        "<linearGradient id='lake' x1='0' y1='0' x2='0' y2='1'>"+
+          "<stop offset='0%' stop-color='var(--accent)' stop-opacity='0.55'/>"+
+          "<stop offset='100%' stop-color='var(--accent)' stop-opacity='0.15'/>"+
+        "</linearGradient>"+
+      "</defs>"+
+      "<rect x='0' y='0' width='960' height='260' fill='url(#sky)'/>"+
+      "<circle cx='150' cy='70' r='34' fill='var(--gold)' opacity='0.55'/>"+
+      "<g opacity='0.5'>"+
+        "<circle cx='260' cy='40' r='1.6' fill='var(--ink)'/><circle cx='300' cy='60' r='1.3' fill='var(--ink)'/>"+
+        "<circle cx='340' cy='35' r='1.8' fill='var(--ink)'/><circle cx='400' cy='55' r='1.4' fill='var(--ink)'/>"+
+        "<circle cx='470' cy='30' r='1.5' fill='var(--ink)'/><circle cx='560' cy='50' r='1.3' fill='var(--ink)'/>"+
+      "</g>"+
+      "<path d='M0 190 130 100 210 165 300 80 400 175 520 95 610 170 720 110 820 175 960 130 960 260 0 260Z' fill='var(--sage)' opacity='0.28'/>"+
+      "<path d='M0 215 160 140 260 195 380 120 470 210 600 145 700 205 820 150 960 200 960 260 0 260Z' fill='var(--slate)' opacity='0.35'/>"+
+      "<rect x='0' y='205' width='960' height='55' fill='url(#lake)'/>"+
+    "</svg>";
+
+  // ---------------- Render helpers ----------------
+  function el(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function fmt(n){
+    if(n === "" || n === null || n === undefined) return "—";
+    var neg = n < 0;
+    var s = Math.abs(n).toLocaleString("en-US");
+    return (neg?"−":"") + "$" + s;
+  }
+
+  // hero illustration
+  document.getElementById("hero-scene").innerHTML = heroSceneSVG;
+
+  // route
+  var routeList = document.getElementById("route-list");
+  route.forEach(function(r){
+    var item = el("div","route-item");
+    item.style.gridTemplateColumns = "34px 1fr";
+    var rail = el("div","rail");
+    rail.appendChild(el("div", null, iconBox(r[2],"--accent-strong")));
+    rail.appendChild(el("div","line"));
+    var body = el("div","body"); body.appendChild(el("h3",null,r[0])); body.appendChild(el("p",null,r[1]));
+    item.appendChild(rail); item.appendChild(body);
+    routeList.appendChild(item);
+  });
+
+  // tips
+  var tipGrid = document.getElementById("tip-grid");
+  tips.forEach(function(t, i){
+    var card = el("div","card tip-card");
+    var tagLabel = t[0] === "urgent" ? "需盡快確認" : "優化建議";
+    card.innerHTML =
+      "<div class='num'>"+(i+1)+"</div>"+
+      "<div><h3>"+t[1]+"<span class='tip-tag "+t[0]+"'>"+tagLabel+"</span></h3><p>"+t[2]+"</p></div>";
+    tipGrid.appendChild(card);
+  });
+
+  // story
+  var storyBody = document.getElementById("story-body");
+  story.forEach(function(s){
+    var d = el("div","story-day");
+    d.appendChild(el("h4",null,s[0]));
+    d.appendChild(el("p",null,s[1]));
+    if(s[2]) d.appendChild(el("p",null,"<b>"+s[2]+"</b>"));
+    storyBody.appendChild(d);
+  });
+  var storyToggle = document.getElementById("story-toggle");
+  storyToggle.addEventListener("click", function(){
+    var open = storyBody.classList.toggle("open");
+    storyToggle.setAttribute("aria-expanded", open ? "true":"false");
+    storyToggle.querySelector("span").textContent = open ? "收合行程故事 ←" : "打開南島 9 天 8 夜的完整故事 →";
+  });
+
+  // links
+  var linkGrid = document.getElementById("link-grid");
+  links.forEach(function(l, i){
+    var a = el("a","link-card");
+    a.href = linkUrls[i]; a.target = "_blank"; a.rel="noopener noreferrer";
+    a.innerHTML = "<span class='k'>"+l[0]+"</span><span class='u'>"+l[1]+"</span>";
+    linkGrid.appendChild(a);
+  });
+
+  var dayIcons = ["plane","snowflake","church","mountain","tree","parachute","gondola","fireworks","bridge","plane"];
+
+  // day picker + card
+  var dayPicker = document.getElementById("day-picker");
+  var dayCard = document.getElementById("day-card");
+  var activeDay = 0;
+  try{
+    var savedDay = localStorage.getItem("nztrip_day");
+    if(savedDay !== null && days[+savedDay]) activeDay = +savedDay;
+  }catch(e){}
+
+  days.forEach(function(day, i){
+    var chip = el("button","day-chip");
+    chip.innerHTML = "<div class='chip-icon' style='width:20px;height:20px;color:var(--accent-strong)'>"+icon(dayIcons[i])+"</div><div class='d'>"+day.d+"</div><div class='date'>"+day.date+"</div><div class='city'>"+day.city+"</div>";
+    chip.addEventListener("click", function(){ setActiveDay(i); });
+    dayPicker.appendChild(chip);
+  });
+
+  function renderDay(i){
+    var day = days[i];
+    var head = el("div","head");
+    var titles = el("div","titles");
+    titles.appendChild(el("div", null, iconBox(dayIcons[i],"--accent-strong")));
+    titles.appendChild((function(){
+      var l = el("div");
+      l.appendChild(el("div","tag", day.d + " · " + day.date));
+      l.appendChild(el("h3",null, day.city));
+      return l;
+    })());
+    head.appendChild(titles);
+    head.appendChild(el("div","badge", day.stay.split(" · ")[0]));
+
+    var body = el("div","body");
+
+    var tl = el("div","timeline");
+    day.timeline.forEach(function(row){
+      var r = el("div","tl-row");
+      r.appendChild(el("div","t",row[0]));
+      r.appendChild(el("div","x",row[1]));
+      tl.appendChild(r);
+    });
+    body.appendChild(tl);
+
+    var metaGrid = el("div","meta-grid");
+    var stayBox = el("div","meta-box");
+    stayBox.appendChild(el("div","k","住宿"));
+    stayBox.appendChild(el("div","v",day.stay));
+    metaGrid.appendChild(stayBox);
+
+    var mealBox = el("div","meta-box");
+    mealBox.appendChild(el("div","k","餐食"));
+    var mealRow = el("div","meal-row");
+    mealRow.innerHTML = "<span class='meal'><b>早</b> "+day.meals.b+"</span><span class='meal'><b>午</b> "+day.meals.l+"</span><span class='meal'><b>晚</b> "+day.meals.d+"</span>";
+    mealBox.appendChild(mealRow);
+    metaGrid.appendChild(mealBox);
+    body.appendChild(metaGrid);
+
+    if(day.note){
+      body.appendChild(el("div","note-box", day.note));
+    }
+
+    dayCard.innerHTML = "";
+    dayCard.appendChild(head);
+    dayCard.appendChild(body);
+  }
+
+  function setActiveDay(i){
+    activeDay = i;
+    Array.prototype.forEach.call(dayPicker.children, function(c, idx){
+      c.classList.toggle("active", idx === i);
+    });
+    renderDay(i);
+    try{ localStorage.setItem("nztrip_day", String(i)); }catch(e){}
+  }
+  setActiveDay(activeDay);
+
+  // stays
+  var stayGrid = document.getElementById("stay-grid");
+  stays.forEach(function(s){
+    var c = el("div","card stay-card");
+    c.innerHTML =
+      "<div class='d'>"+s[0]+" · "+s[1]+"</div>"+
+      "<h3>"+s[3]+"</h3>"+
+      "<div class='city'>"+s[2]+"</div>"+
+      "<div class='prices'>"+
+        "<div><div class='n mono'>"+fmt(s[4])+"</div><div class='l'>雙人房／晚</div></div>"+
+        "<div><div class='n mono'>"+fmt(s[5])+"</div><div class='l'>單人分攤／晚</div></div>"+
+      "</div>"+
+      "<div class='inout'>"+(s[6]?"<span>入住 "+s[6]+"</span>":"")+(s[7]?"<span>退房 "+s[7]+"</span>":"")+"</div>"+
+      (s[8] ? "<div class='foot'>"+s[8]+"</div>" : "");
+    stayGrid.appendChild(c);
+  });
+
+  // flights
+  var flightList = document.getElementById("flight-list");
+  flights.forEach(function(f){
+    var row = el("div","flight-row");
+    row.innerHTML =
+      "<div class='date'>"+f[0]+"</div>"+
+      "<div class='flight-path'>"+
+        "<span><span class='place'>"+f[1]+"</span><span class='time mono'>"+f[2]+"</span></span>"+
+        "<span class='arrow'>&#10142;</span>"+
+        "<span><span class='place'>"+f[3]+"</span><span class='time mono'>"+f[4]+"</span></span>"+
+      "</div>"+
+      "<div class='flight-meta'><div class='airline'>"+f[6]+"</div><div>"+f[5]+" · "+f[7]+"</div></div>";
+    flightList.appendChild(row);
+  });
+
+  // car
+  var carGrid = document.getElementById("car-grid");
+  car.forEach(function(c){
+    var box = el("div","meta-box");
+    box.appendChild(el("div","k",c[0]));
+    box.appendChild(el("div","v",c[1]));
+    carGrid.appendChild(box);
+  });
+
+  // budget kpis
+  var actualTotal = 177161, estTotal = 306790, perPersonEst = 147760;
+  var kpis = [
+    [fmt(actualTotal),"目前實際已付款（雙人）"],
+    [fmt(estTotal),"預估總花費（雙人）"],
+    [fmt(perPersonEst),"分類預估合計（單人）"],
+    [Math.round(actualTotal/estTotal*100)+"%","已付款進度"]
+  ];
+  var kpiRow = document.getElementById("budget-kpis");
+  kpis.forEach(function(k){
+    var box = el("div","kpi");
+    box.appendChild(el("div","n",k[0]));
+    box.appendChild(el("div","l",k[1]));
+    kpiRow.appendChild(box);
+  });
+
+  // settlement
+  (function(){
+    var paid = {};
+    budgetItems.forEach(function(it){
+      var amt = it[3], payer = it[6];
+      if(amt > 0 && payer && payer !== "—"){
+        paid[payer] = (paid[payer]||0) + amt;
+      }
+    });
+    var names = Object.keys(paid);
+    var totalPaid = names.reduce(function(s,n){ return s+paid[n]; }, 0);
+    var share = totalPaid / (names.length || 1);
+
+    var box = document.getElementById("settle-card");
+    var grid = el("div","settle-grid");
+    names.forEach(function(n){
+      var b = el("div","settle-box");
+      b.appendChild(el("div","who",n+" 已付"));
+      b.appendChild(el("div","amt mono", fmt(paid[n])));
+      b.appendChild(el("div","sub","應分攤 "+fmt(Math.round(share))));
+      grid.appendChild(b);
+    });
+    box.appendChild(grid);
+
+    if(names.length === 2){
+      var a = names[0], b2 = names[1];
+      var diff = paid[a] - paid[b2];
+      var owerName, payeeName, owe;
+      if(diff > 0){ owerName = b2; payeeName = a; owe = diff/2; }
+      else if(diff < 0){ owerName = a; payeeName = b2; owe = -diff/2; }
+      var result = el("div","settle-result");
+      if(owe){
+        result.innerHTML = "<span class='arrow-icon'>&#8594;</span><span class='text'>"+owerName+" 應轉給 "+payeeName+" <b class='mono'>"+fmt(Math.round(owe))+"</b>，兩人目前已付金額就打平了。</span>";
+      } else {
+        result.innerHTML = "<span class='arrow-icon'>&#10003;</span><span class='text'>兩人目前付款金額剛好一樣，不用互轉。</span>";
+      }
+      box.appendChild(result);
+    }
+  })();
+
+  // budget bars
+  var barsWrap = document.getElementById("budget-bars");
+  var maxCat = Math.max.apply(null, categories.map(function(c){return c[1];}));
+  categories.forEach(function(c){
+    var row = el("div","bar-row");
+    var top = el("div","top");
+    top.innerHTML = "<span class='cat'><span class='sw' style='background:var("+catColorVar[c[0]]+")'></span>"+c[0]+"</span><span class='amt mono'>"+fmt(c[1])+"</span>";
+    row.appendChild(top);
+    var track = el("div","bar-track");
+    var fill = el("div","bar-fill");
+    fill.style.width = (c[1]/maxCat*100)+"%";
+    fill.style.background = "var("+catColorVar[c[0]]+")";
+    track.appendChild(fill);
+    row.appendChild(track);
+    barsWrap.appendChild(row);
+  });
+
+  // budget table
+  var budgetTbody = document.querySelector("#budget-table tbody");
+  budgetItems.forEach(function(it){
+    var tr = document.createElement("tr");
+    var paid = it[3] > 0;
+    var catVar = catColorVar[it[2]] || "--slate";
+    tr.innerHTML =
+      "<td><b>"+it[0]+"</b>"+(it[1] ? "<div style='color:var(--ink-faint);font-size:12px;margin-top:2px'>"+it[1]+"</div>" : "")+"</td>"+
+      "<td><span class='cat-pill' style='background:var("+catVar+")'>"+it[2]+"</span></td>"+
+      "<td class='num'>"+fmt(it[3])+"</td>"+
+      "<td class='num'>"+fmt(it[4])+"</td>"+
+      "<td class='num'>"+fmt(it[5])+"</td>"+
+      "<td>"+it[6]+"</td>"+
+      "<td>"+(paid ? "<span class='status-pill status-paid'>已付款</span>" : "<span class='status-pill status-pending'>未付款</span>")+"</td>"+
+      "<td style='color:var(--ink-faint);font-size:12.5px'>"+(it[7]||"")+"</td>";
+    budgetTbody.appendChild(tr);
+  });
+
+  // ledger
+  var ledgerTbody = document.querySelector("#ledger-table tbody");
+  ledger.forEach(function(l){
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      "<td>"+l[0]+"</td><td class='mono'>"+l[1]+"</td><td>"+l[2]+"</td><td>"+l[3]+"</td>"+
+      "<td class='num'>"+fmt(l[4])+"</td><td class='num'>"+fmt(l[5])+"</td><td class='num'>"+fmt(l[6])+"</td>"+
+      "<td>"+l[7]+"</td><td class='num'>"+(l[8]!==""? Number(l[8]).toLocaleString("en-US",{minimumFractionDigits:2}) : "—")+"</td>"+
+      "<td class='num'>"+(l[9]!==""? l[9] : "—")+"</td>";
+    ledgerTbody.appendChild(tr);
+  });
+  var ledgerToggle = document.getElementById("ledger-toggle");
+  var ledgerBody = document.getElementById("ledger-body");
+  ledgerToggle.addEventListener("click", function(){
+    var open = ledgerBody.classList.toggle("open");
+    ledgerToggle.setAttribute("aria-expanded", open?"true":"false");
+  });
+
+  // route map
+  function makeProjector(latlngs, pad){
+    var avgLat = latlngs.reduce(function(s,p){return s+p[0];},0) / latlngs.length;
+    var scale = Math.cos(avgLat * Math.PI/180);
+    var xs = latlngs.map(function(p){ return p[1]*scale; });
+    var ys = latlngs.map(function(p){ return p[0]; });
+    var minX = Math.min.apply(null,xs), maxX = Math.max.apply(null,xs);
+    var minY = Math.min.apply(null,ys), maxY = Math.max.apply(null,ys);
+    return function(lat,lng){
+      var xr = lng*scale, yr = lat;
+      var x = maxX>minX ? pad + (xr-minX)/(maxX-minX)*(100-2*pad) : 50;
+      var y = maxY>minY ? pad + (maxY-yr)/(maxY-minY)*(100-2*pad) : 50;
+      return { x:x, y:y };
+    };
+  }
+  function projectStops(stops, pad, project){
+    var proj = project || makeProjector(stops.map(function(p){return [p[3],p[4]];}), pad);
+    return stops.map(function(p){
+      var xy = proj(p[3], p[4]);
+      return { day:p[0], date:p[1], name:p[2], x:xy.x, y:xy.y, url:"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(p[5]) };
+    });
+  }
+  function drawRouteMap(pts, segElId, pinsElId, numberOffset){
+    var segG = document.getElementById(segElId);
+    for(var i=0;i<pts.length-1;i++){
+      var a = pts[i], b = pts[i+1];
+      var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+      var dx = b.x-a.x, dy = b.y-a.y, len = Math.sqrt(dx*dx+dy*dy) || 1;
+      var ex = b.x - dx/len*3.2, ey = b.y - dy/len*3.2;
+      path.setAttribute("d","M"+a.x+","+a.y+" L"+ex+","+ey);
+      path.setAttribute("stroke","var(--accent)");
+      path.setAttribute("stroke-width","0.6");
+      path.setAttribute("stroke-dasharray","2 1.6");
+      path.setAttribute("fill","none");
+      path.setAttribute("marker-end","url(#arrow)");
+      path.setAttribute("vector-effect","non-scaling-stroke");
+      segG.appendChild(path);
+    }
+    var pinsWrap = document.getElementById(pinsElId);
+    pts.forEach(function(p, i){
+      var globalIdx = i + numberOffset;
+      var pin = document.createElement("a");
+      pin.className = "map-pin" + (globalIdx===0 ? " start" : globalIdx===routeStops.length-1 ? " end" : "");
+      pin.href = p.url; pin.target = "_blank"; pin.rel = "noopener noreferrer";
+      pin.style.left = p.x+"%"; pin.style.top = p.y+"%";
+      pin.title = p.day+" · "+p.name;
+      pin.textContent = globalIdx+1;
+      pinsWrap.appendChild(pin);
+    });
+  }
+  (function(){
+    var pad = 6;
+    var sharedProject = makeProjector(islandOutline, pad);
+    var islandPts = islandOutline.map(function(p){ var xy = sharedProject(p[0],p[1]); return xy.x+","+xy.y; }).join(" ");
+    document.getElementById("island-shape").setAttribute("points", islandPts);
+
+    var fullPts = projectStops(routeStops, pad, sharedProject);
+    drawRouteMap(fullPts, "map-segments", "map-pins", 0);
+
+    var pinsWrap = document.getElementById("map-pins");
+    Object.keys(mapLabels).forEach(function(idx){
+      var p = fullPts[+idx];
+      var lbl = el("div","map-label", mapLabels[idx]);
+      lbl.style.left = p.x+"%"; lbl.style.top = p.y+"%";
+      pinsWrap.appendChild(lbl);
+    });
+
+    var clusterStops = routeStops.slice(7); // Arrowtown -> Queenstown Airport
+    var clusterPts = projectStops(clusterStops, 14);
+    drawRouteMap(clusterPts, "map-segments-2", "map-pins-2", 7);
+
+    var stopList = document.getElementById("stop-list");
+    fullPts.forEach(function(p, i){
+      var row = el("div","stop-row");
+      row.appendChild(el("div","num", i+1));
+      row.appendChild(el("div","when", p.day+"<div style='color:var(--ink-faint);font-weight:400'>"+p.date+"</div>"));
+      row.appendChild(el("div","name", p.name));
+      var a = document.createElement("a");
+      a.className = "gmap"; a.href = p.url; a.target="_blank"; a.rel="noopener noreferrer";
+      a.innerHTML = "開啟地圖 &#8599;";
+      row.appendChild(a);
+      stopList.appendChild(row);
+    });
+  })();
+
+  // important dates
+  (function(){
+    var list = document.getElementById("date-list");
+    var today = new Date();
+    var todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var rows = importantDates.map(function(d){
+      var dt = new Date(d[0]+"T00:00:00");
+      var diffDays = Math.round((dt - todayMid) / 86400000);
+      return { date:dt, title:d[1], sub:d[2], diff:diffDays };
+    }).sort(function(a,b){ return a.date - b.date; });
+
+    rows.forEach(function(r){
+      var row = el("div","date-row");
+      var mm = r.date.getMonth()+1, dd = r.date.getDate();
+      var dateStr = r.date.getFullYear()+"/"+(mm<10?"0"+mm:mm)+"/"+(dd<10?"0"+dd:dd);
+      row.appendChild(el("div","dd",dateStr));
+      row.appendChild(el("div","lbl", r.title + "<span class='sm'>"+r.sub+"</span>"));
+      var pillText, soon;
+      if(r.diff > 0){ pillText = "還有 "+r.diff+" 天"; soon = r.diff <= 30; }
+      else if(r.diff === 0){ pillText = "就是今天"; soon = true; }
+      else { pillText = "已過 "+(-r.diff)+" 天"; soon = false; }
+      var pill = el("div","count-pill" + (soon ? " soon":""), pillText);
+      row.appendChild(pill);
+      list.appendChild(row);
+    });
+  })();
+
+  // prep checklist
+  (function(){
+    var wrap = document.getElementById("prep-groups");
+    var STORE_KEY = "nztrip_prep_v1";
+    var state = {};
+    try{ state = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); }catch(e){ state = {}; }
+
+    var total = 0, checkboxes = [];
+    prepGroups.forEach(function(g, gi){
+      var group = el("div","prep-group");
+      group.appendChild(el("h3", null, g[0]));
+      var listEl = el("div","prep-list");
+      g[1].forEach(function(text, ii){
+        var id = "p"+gi+"_"+ii;
+        total++;
+        var item = el("label","prep-item" + (state[id] ? " done":""));
+        var cb = document.createElement("input");
+        cb.type = "checkbox"; cb.checked = !!state[id];
+        item.appendChild(cb);
+        item.appendChild(el("span",null,text));
+        cb.addEventListener("change", function(){
+          state[id] = cb.checked;
+          item.classList.toggle("done", cb.checked);
+          try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+          updateProgress();
+        });
+        checkboxes.push(cb);
+        listEl.appendChild(item);
+      });
+      group.appendChild(listEl);
+      wrap.appendChild(group);
+    });
+
+    function updateProgress(){
+      var done = checkboxes.filter(function(c){ return c.checked; }).length;
+      document.getElementById("prep-progress-note").textContent = "已完成 "+done+" / "+total;
+    }
+    updateProgress();
+  })();
+
+  // tabs
+  var tabs = document.querySelectorAll(".tab");
+  var panels = { overview: document.getElementById("panel-overview"), days: document.getElementById("panel-days"), stay: document.getElementById("panel-stay"), budget: document.getElementById("panel-budget"), map: document.getElementById("panel-map"), prep: document.getElementById("panel-prep") };
+  function setTab(name){
+    tabs.forEach(function(t){ t.classList.toggle("active", t.dataset.tab === name); });
+    Object.keys(panels).forEach(function(k){ panels[k].classList.toggle("active", k===name); });
+    try{ localStorage.setItem("nztrip_tab", name); }catch(e){}
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ setTab(t.dataset.tab); }); });
+  try{
+    var savedTab = localStorage.getItem("nztrip_tab");
+    if(savedTab && panels[savedTab]) setTab(savedTab);
+  }catch(e){}
+
+})();
+</script>
